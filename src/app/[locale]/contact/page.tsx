@@ -25,34 +25,34 @@ export default async function Contact({ params }: { params: Promise<{ locale: st
                         <h2 className="text-3xl font-serif font-bold text-navy mb-8">Contact Information</h2>
                         <div className="bg-gray-50 p-8 rounded-xl border border-gray-100 shadow-sm space-y-8">
                             <div className="flex items-start gap-4">
-                                <div className="p-3 bg-white rounded-full text-gold shadow-sm">
+                                <div className="p-3 bg-white rounded-full text-gold shadow-sm shrink-0">
                                     <Phone size={24} />
                                 </div>
-                                <div>
+                                <div className="flex-1 min-w-0">
                                     <span className="block text-sm uppercase text-gray-500 font-bold tracking-wider mb-1">Phone</span>
-                                    <a href="tel:+19548534995" className="text-xl text-navy hover:text-gold transition-colors font-medium">+1 (954) 853-4995</a>
+                                    <a href="tel:+19548534995" className="block text-base md:text-xl text-navy hover:text-gold transition-colors font-medium break-words">+1 (954) 853-4995</a>
                                     <p className="text-sm text-gray-400 mt-1">Mon-Sun, 9am - 8pm</p>
                                 </div>
                             </div>
 
                             <div className="flex items-start gap-4">
-                                <div className="p-3 bg-white rounded-full text-gold shadow-sm">
+                                <div className="p-3 bg-white rounded-full text-gold shadow-sm shrink-0">
                                     <Mail size={24} />
                                 </div>
-                                <div>
+                                <div className="flex-1 min-w-0">
                                     <span className="block text-sm uppercase text-gray-500 font-bold tracking-wider mb-1">Email</span>
-                                    <a href="mailto:contact@prestigeyachtsdetailing.com" className="text-xl text-navy hover:text-gold transition-colors font-medium">contact@prestigeyachtsdetailing.com</a>
+                                    <a href="mailto:contact@prestigeyachtsdetailing.com" className="block text-base md:text-xl text-navy hover:text-gold transition-colors font-medium break-words">contact@prestigeyachtsdetailing.com</a>
                                 </div>
                             </div>
 
                             <div className="flex items-start gap-4">
-                                <div className="p-3 bg-white rounded-full text-gold shadow-sm">
+                                <div className="p-3 bg-white rounded-full text-gold shadow-sm shrink-0">
                                     <MapPin size={24} />
                                 </div>
-                                <div>
+                                <div className="flex-1 min-w-0">
                                     <span className="block text-sm uppercase text-gray-500 font-bold tracking-wider mb-1">Location</span>
-                                    <p className="text-xl text-navy font-medium">South Florida</p>
-                                    <p className="text-gray-500">Miami, Miami Beach, Fort Lauderdale</p>
+                                    <p className="text-base md:text-xl text-navy font-medium break-words">South Florida</p>
+                                    <p className="text-sm md:text-base text-gray-500 mt-1">Miami, Miami Beach, Fort Lauderdale</p>
                                 </div>
                             </div>
                         </div>
