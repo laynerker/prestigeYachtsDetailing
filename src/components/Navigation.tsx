@@ -14,6 +14,17 @@ export default function Navigation({ locale }: { locale: string }) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isMobileMenuOpen]);
+
+    useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
         };
@@ -24,7 +35,6 @@ export default function Navigation({ locale }: { locale: string }) {
     const navLinks = [
         { href: `/${locale}`, label: t('home') },
         { href: `/${locale}/about`, label: t('about') },
-
         { href: `/${locale}/services`, label: t('services') },
         { href: `/${locale}/contact`, label: t('contact') },
     ];
@@ -34,19 +44,21 @@ export default function Navigation({ locale }: { locale: string }) {
     }
 
     const toggleLanguage = () => {
-        // Simplistic toggle
         const newLocale = locale === 'en' ? 'es' : 'en';
         const path = window.location.pathname;
-        // Replace the locale segment
-        // This is a bit naive if path doesn't start with locale but middleware ensures it does or rewrites
-        // With next-intl we usually use a Link with locale prop, but for a switcher:
         let newPath = path;
         if (path.startsWith('/en')) {
             newPath = path.replace('/en', '/es');
         } else if (path.startsWith('/es')) {
             newPath = path.replace('/es', '/en');
         } else {
-            newPath = `/${newLocale}${path}`;
+            const parts = path.split('/');
+            if (parts[1] === locale) {
+                parts[1] = newLocale;
+                newPath = parts.join('/');
+            } else {
+                newPath = `/${newLocale}${path}`;
+            }
         }
         window.location.href = newPath;
     };
@@ -54,46 +66,51 @@ export default function Navigation({ locale }: { locale: string }) {
     return (
         <header
             className={cn(
-                'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
-                isScrolled ? 'bg-navy/95 backdrop-blur-md py-4 shadow-lg border-b border-white/5' : 'bg-transparent py-6'
+                'fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-in-out',
+                isScrolled ? 'bg-navy/85 backdrop-blur-xl py-2 md:py-3 shadow-2xl border-b border-white/5' : 'bg-gradient-to-b from-navy/50 to-transparent py-6 md:py-8'
             )}
         >
-            <div className="container mx-auto px-4 flex items-center justify-between">
-                <Link href={`/${locale}`} className="relative z-50 block">
+            <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
+                <Link href={`/${locale}`} className="relative z-50 block" onClick={() => setIsMobileMenuOpen(false)}>
                     <Image
                         src="/assets/images/logo.png"
                         alt="Prestige Yacht Detailing"
                         width={240}
                         height={80}
                         className={cn(
-                            "w-auto object-contain transition-all duration-500",
-                            isScrolled ? "h-12 md:h-14" : "h-16 md:h-24"
+                            "w-auto object-contain transition-all duration-700 ease-in-out",
+                            isScrolled ? "h-9 md:h-12" : "h-12 md:h-16"
                         )}
                         priority
                     />
                 </Link>
 
                 {/* Desktop Menu */}
-                <nav className="hidden md:flex items-center gap-8">
+                <nav className="hidden md:flex items-center gap-10">
                     {navLinks.map((link) => (
                         <Link
                             key={link.href}
                             href={link.href}
-                            className="text-gold hover:text-white transition-colors text-sm font-medium uppercase tracking-wide"
+                            className="relative text-white/80 hover:text-gold transition-colors duration-300 text-xs font-medium uppercase tracking-[0.2em] py-2 group"
                         >
                             {link.label}
+                            <span className="absolute bottom-1 left-0 w-0 h-[1px] bg-gold transition-all duration-300 group-hover:w-full opacity-50"></span>
                         </Link>
                     ))}
-                    <button onClick={toggleLanguage} className="text-gold hover:text-white transition-colors flex items-center gap-1 ml-4 border border-gold/20 hover:border-white/20 px-3 py-1 rounded-full text-xs">
-                        <Globe size={14} />
+                    <button
+                        onClick={toggleLanguage}
+                        className="text-white/80 hover:text-gold transition-colors duration-300 flex items-center gap-2 ml-4 border border-white/20 hover:border-gold/50 px-4 py-2 rounded-full text-xs font-medium tracking-widest bg-white/5 backdrop-blur-sm"
+                    >
+                        <Globe size={14} className="opacity-70" />
                         <span className="uppercase">{locale}</span>
                     </button>
                 </nav>
 
                 {/* Mobile Menu Button */}
                 <button
-                    className="md:hidden text-gold z-50 p-2"
+                    className="md:hidden text-white z-50 p-2 hover:bg-white/10 rounded-full transition-colors backdrop-blur-sm"
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    aria-label="Toggle Menu"
                 >
                     {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
                 </button>
@@ -101,24 +118,52 @@ export default function Navigation({ locale }: { locale: string }) {
                 {/* Mobile Menu Overlay */}
                 <div
                     className={cn(
-                        'fixed inset-0 bg-navy/98 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-8 transition-transform duration-300 md:hidden',
-                        isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+                        'fixed inset-0 bg-navy/98 backdrop-blur-2xl z-40 flex flex-col items-center justify-center transition-all duration-500 md:hidden',
+                        isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
                     )}
                 >
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.href}
-                            href={link.href}
-                            className="text-gold text-2xl font-serif"
-                            onClick={() => setIsMobileMenuOpen(false)}
+                    <nav className="flex flex-col items-center gap-8">
+                        {navLinks.map((link, index) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className={cn(
+                                    "text-gold text-3xl font-serif hover:text-white transition-all duration-300 transform",
+                                    isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+                                )}
+                                style={{ transitionDelay: `${index * 100}ms` }}
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
+
+                        <div className={cn(
+                            "mt-12 transition-all duration-500 transform",
+                            isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+                        )}
+                            style={{ transitionDelay: `${navLinks.length * 100}ms` }}
                         >
-                            {link.label}
-                        </Link>
-                    ))}
-                    <button onClick={toggleLanguage} className="text-gold mt-8 flex items-center gap-2 border border-gold/20 px-4 py-2 rounded-full">
-                        <Globe size={20} />
-                        <span className="uppercase">{locale === 'en' ? 'Español' : 'English'}</span>
-                    </button>
+                            <button
+                                onClick={toggleLanguage}
+                                className="text-gold flex items-center gap-3 border border-gold/40 px-8 py-3 rounded-full hover:bg-gold hover:text-navy transition-all duration-300 text-lg font-medium"
+                            >
+                                <Globe size={24} />
+                                <span className="uppercase">{locale === 'en' ? 'Español' : 'English'}</span>
+                            </button>
+                        </div>
+                    </nav>
+
+                    {/* Background decorative element */}
+                    <div className="absolute bottom-12 opacity-10 pointer-events-none">
+                        <Image
+                            src="/assets/images/logo.png"
+                            alt="Logo Watermark"
+                            width={300}
+                            height={100}
+                            className="w-auto h-20 object-contain grayscale"
+                        />
+                    </div>
                 </div>
             </div>
         </header>

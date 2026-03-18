@@ -12,8 +12,8 @@ export default async function Services({ params }: { params: Promise<{ locale: s
         {
             title: "Wash Down",
             description: "Complete wash using professional marine-grade products, safe for all surfaces.",
-            imageBefore: "/assets/images/services/yateError.png",
-            imageAfter: "/assets/images/services/yateClear.png",
+            imageBefore: "/assets/images/services/wash_down_antes.png",
+            imageAfter: "/assets/images/services/wash_down_despues.png",
             items: [
                 "Hull",
                 "Deck",
@@ -24,8 +24,8 @@ export default async function Services({ params }: { params: Promise<{ locale: s
         {
             title: "Premium Detailed Wash",
             description: "An in-depth premium service focused on flawless finishes and impeccable presentation.",
-            imageBefore: "/assets/images/services/yateError.png",
-            imageAfter: "/assets/images/services/yateClear.png",
+            imageBefore: "/assets/images/services/Detailing_antes.png",
+            imageAfter: "/assets/images/services/Detailing_despues.png",
             items: [
                 "Complete exterior Wash",
                 "Hand drying",
@@ -38,8 +38,8 @@ export default async function Services({ params }: { params: Promise<{ locale: s
         {
             title: "Teak Cleaning & Treatment",
             description: "Professional care for teak decks using specialized marine-grade products.",
-            imageBefore: "/assets/images/services/yateError.png",
-            imageAfter: "/assets/images/services/yateClear.png",
+            imageBefore: "/assets/images/services/Teak_antes.png",
+            imageAfter: "/assets/images/services/Teak_despues.png",
             items: [
                 "Deep cleaning",
                 "Removal of dirt, salt and marine residue",
@@ -49,8 +49,8 @@ export default async function Services({ params }: { params: Promise<{ locale: s
         {
             title: "Metal Polish",
             description: "Professional restoration and protection of stainless steel surfaces.",
-            imageBefore: "/assets/images/services/yateError.png",
-            imageAfter: "/assets/images/services/yateClear.png",
+            imageBefore: "/assets/images/services/metal_polish_antes.png",
+            imageAfter: "/assets/images/services/metal_polish_despues.png",
             items: [
                 "Removal of stains and light oxidation",
                 "Hand polishing",
@@ -60,8 +60,8 @@ export default async function Services({ params }: { params: Promise<{ locale: s
         {
             title: "Engine Room Care",
             description: "Careful cleaning and presentation of machinery spaces, respecting all mechanical and safety standars",
-            imageBefore: "/assets/images/services/yateError.png",
-            imageAfter: "/assets/images/services/yateClear.png",
+            imageBefore: "/assets/images/services/engine_room_antes.png",
+            imageAfter: "/assets/images/services/engine_room_despues.png",
             items: [
                 "Surface cleaning",
                 "Oil residue control",
