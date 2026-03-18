@@ -2,12 +2,12 @@
 
 :root {
   /* Brand Colors */
-  --color-navy: #0D1F2D;
-  --color-navy-light: #1A2442;
-  --color-gold: #C9A55A;
-  --color-gold-light: #F4CF57;
-  --color-gold-dark: #B59326;
-  --color-white: #FFFFFF;
+  --color-navy: #0A1420;
+  --color-navy-light: #162436;
+  --color-gold: #D4AF37;
+  --color-gold-light: #FCE181;
+  --color-gold-dark: #997A00;
+  --color-white: #FAFAFA;
   --color-black: #000000;
 
   /* Theme mapping */
@@ -21,7 +21,7 @@
   --secondary-foreground: var(--color-navy);
 
   --muted: #F3F4F6;
-  --muted-foreground: #4B5563;
+  --muted-foreground: #6B7280;
 }
 
 @theme inline {
@@ -52,14 +52,30 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1,
-h2,
 h3,
 h4,
 h5,
 h6 {
   font-family: var(--font-serif);
-  color: var(--color-gold);
+  color: var(--color-navy);
+}
+
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold) 50%, var(--color-gold-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

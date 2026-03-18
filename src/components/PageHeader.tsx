@@ -20,7 +20,7 @@ export default function PageHeader({ title, imageSrc }: { title: string, imageSr
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="relative z-10 text-4xl md:text-6xl font-serif font-bold text-white text-center drop-shadow-xl px-4"
+                className="relative z-10 text-4xl md:text-6xl font-serif font-bold text-gold text-center drop-shadow-xl px-4"
             >
                 {title}
             </motion.h1>

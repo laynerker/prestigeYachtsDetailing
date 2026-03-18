@@ -16,14 +16,16 @@ export default async function Home({
   setRequestLocale(locale);
 
   return (
-    <main className="flex min-h-screen flex-col">
+    <main className="flex min-h-screen flex-col bg-navy">
       <Navigation locale={locale} />
       <Hero />
       <Stats />
 
       {/* Placeholder for other sections */}
-      <div id="fleet" className="h-screen bg-gray-50 flex items-center justify-center">
-        <p className="text-gray-400">Yacht Fleet Section Coming Soon...</p>
+      <div id="fleet" className="min-h-[50vh] bg-navy flex flex-col items-center justify-center relative overflow-hidden border-t border-white/5 py-24">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-navy/50 pointer-events-none" />
+        <p className="text-gold tracking-[0.4em] uppercase text-xs mb-4 opacity-50 relative z-10">Exclusive Collection</p>
+        <h2 className="text-4xl md:text-5xl font-serif text-white/20 relative z-10 tracking-widest text-center px-4">THE FLEET<br /><span className="text-xl md:text-2xl mt-4 block">Coming Soon</span></h2>
       </div>
 
       <Footer locale={locale} />

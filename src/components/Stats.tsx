@@ -19,8 +19,9 @@ const CountUp = ({ end, duration = 2 }: { end: number, duration?: number }) => {
             const progress = timestamp - startTime;
 
             const percentage = Math.min(progress / (duration * 1000), 1);
-
-            setCount(Math.floor(end * percentage));
+            // Easing out function
+            const easeOutQuart = 1 - Math.pow(1 - percentage, 4);
+            setCount(Math.floor(end * easeOutQuart));
 
             if (percentage < 1) {
                 animationFrame = requestAnimationFrame(updateCount);
@@ -44,16 +45,30 @@ export default function Stats() {
     ];
 
     return (
-        <section className="py-24 bg-white text-navy relative z-20 -mt-8 rounded-t-3xl shadow-2xl mx-4 md:mx-0 md:rounded-none md:mt-0 md:shadow-none">
-            <div className="container mx-auto px-4">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center divide-y md:divide-y-0 md:divide-x divide-gray-100">
-                    {stats.map((stat) => (
-                        <div key={stat.key} className="p-8">
-                            <div className="text-6xl font-bold font-serif text-navy mb-4">
-                                <CountUp end={stat.value} />{stat.suffix}
+        <section className="py-20 bg-navy border-t border-white/5 relative z-20 overflow-hidden">
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_100%)] opacity-20 pointer-events-none" />
+
+            <div className="container mx-auto px-4 max-w-6xl relative z-10">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-y-12 gap-x-8 text-center md:divide-x divide-white/10">
+                    {stats.map((stat, i) => (
+                        <motion.div
+                            key={stat.key}
+                            className="p-4"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: i * 0.2 }}
+                        >
+                            <div className="text-5xl md:text-6xl lg:text-7xl font-light font-serif text-white mb-6 flex items-baseline justify-center gap-1">
+                                <CountUp end={stat.value} duration={2.5} />
+                                <span className="text-gold text-4xl">{stat.suffix}</span>
                             </div>
-                            <p className="text-gray-400 uppercase tracking-widest text-sm font-medium">{t(stat.key)}</p>
-                        </div>
+                            <div className="flex items-center justify-center gap-4 mb-2">
+                                <span className="h-[1px] w-8 bg-gold/50"></span>
+                                <p className="text-gold tracking-[0.2em] text-xs font-semibold uppercase">{t(stat.key)}</p>
+                                <span className="h-[1px] w-8 bg-gold/50"></span>
+                            </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>
