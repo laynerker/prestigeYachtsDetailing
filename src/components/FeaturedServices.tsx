@@ -10,17 +10,17 @@ export default function FeaturedServices() {
     const services = [
         {
             title: 'Wash Down',
-            image: '/assets/images/services/wash_down_despues.png',
+            image: '/assets/images/services/wash_down_despues.webp',
             id: 'wash-down'
         },
         {
             title: 'Premium Detailed Wash',
-            image: '/assets/images/services/Detailing_despues.png',
+            image: '/assets/images/services/Detailing_despues.webp',
             id: 'premium-detailed-wash'
         },
         {
             title: 'Teak Cleaning & Treatment',
-            image: '/assets/images/services/Teak_despues.png',
+            image: '/assets/images/services/Teak_despues.webp',
             id: 'teak-cleaning-treatment'
         }
     ];
@@ -30,7 +30,7 @@ export default function FeaturedServices() {
             {/* Background elements for depth */}
             <div className="absolute inset-0 bg-gradient-to-b from-navy via-[#07101e] to-navy pointer-events-none" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
-            
+
             <div className="container mx-auto px-4 max-w-7xl relative z-10">
                 {/* Optional subtle header to anchor the section */}
                 <div className="text-center mb-20">
@@ -57,18 +57,18 @@ export default function FeaturedServices() {
                             transition={{ duration: 1, delay: i * 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
                             className="group flex flex-col items-center"
                         >
-                            <Link 
-                                href={`/${locale}/services#${service.id}`} 
+                            <Link
+                                href={`/${locale}/services#${service.id}`}
                                 className="w-full relative flex flex-col items-center outline-none focus-visible:ring-1 focus-visible:ring-gold rounded-sm group cursor-pointer"
                             >
                                 {/* Image Container with Elegant Framing */}
                                 <div className="relative w-full aspect-[3/4] overflow-hidden bg-[#0a1526] mb-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)] ring-1 ring-white/5 group-hover:ring-gold/30 transition-all duration-700">
                                     <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700 z-10 pointer-events-none" />
-                                    
+
                                     <div className="absolute inset-4 border border-white/5 group-hover:border-gold/20 transition-colors duration-700 z-20 pointer-events-none" />
-                                    
-                                    <Image 
-                                        src={service.image} 
+
+                                    <Image
+                                        src={service.image}
                                         alt={service.title}
                                         fill
                                         unoptimized
