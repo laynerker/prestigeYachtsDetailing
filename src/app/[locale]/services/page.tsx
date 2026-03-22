@@ -3,11 +3,13 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import PageHeader from '@/components/PageHeader';
 import ImageComparison from '@/components/ImageComparison';
-import { setRequestLocale } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
+import Link from 'next/link';
 
 export default async function Services({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
     setRequestLocale(locale);
+    const t = await getTranslations('Services');
     const itemsServices = [
         {
             title: "Wash Down",
@@ -73,10 +75,10 @@ export default async function Services({ params }: { params: Promise<{ locale: s
     return (
         <main className="flex min-h-screen flex-col bg-white">
             <Navigation locale={locale} />
-            <PageHeader title="Enhance Your Experience" imageSrc="/assets/images/hero.png" />
+            <PageHeader title={t('headerTitle')} imageSrc="/assets/images/hero.png" />
 
             {itemsServices.map((item, index) => (
-                <section key={index} className="container mx-auto px-4 py-5">
+                <section key={index} id={item.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')} className="container mx-auto px-4 py-5 scroll-mt-32">
                     <div className="flex flex-col md:flex-row gap-12 items-center mb-24">
                         {index % 2 === 0 ? (
                             <>
@@ -102,7 +104,9 @@ export default async function Services({ params }: { params: Promise<{ locale: s
                                             </li>
                                         ))}
                                     </ul>
-                                    {/* <button className="px-6 py-3 bg-navy text-white rounded hover:bg-gold transition-colors">Request Custom Menu</button> */}
+                                    <Link href={`/${locale}/contact?service=${encodeURIComponent(item.title)}`} className="inline-block px-8 py-3 bg-navy text-white font-serif tracking-wide rounded hover:bg-gold transition-colors drop-shadow-md">
+                                        {t('requestAppointment')}
+                                    </Link>
                                 </div>
                             </>
                         ) : (
@@ -122,7 +126,9 @@ export default async function Services({ params }: { params: Promise<{ locale: s
                                             </li>
                                         ))}
                                     </ul>
-                                    {/* <button className="px-6 py-3 bg-navy text-white rounded hover:bg-gold transition-colors">Request Custom Menu</button> */}
+                                    <Link href={`/${locale}/contact?service=${encodeURIComponent(item.title)}`} className="inline-block px-8 py-3 bg-navy text-white font-serif tracking-wide rounded hover:bg-gold transition-colors drop-shadow-md">
+                                        {t('requestAppointment')}
+                                    </Link>
                                 </div>
                                 <div className="w-full md:w-1/2 h-[400px] bg-gray-200 rounded-lg relative overflow-hidden shadow-xl">
                                     <ImageComparison

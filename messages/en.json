@@ -22,9 +22,17 @@
         "copyright": "© 2026 Prestige Yachts Detailing. All rights reserved."
     },
     "About": {
-        "title": "Welcome to Prestige Yachts Detailing",
-        "p1": "At Prestige Yachts Detailing, we are setting a new standard for yacht care in Miami. As a dedicated new team in the marine industry, we bring fresh energy, unwavering dedication, and an obsessive attention to detail to every vessel we service.",
-        "p2": "Our mission is simple yet ambitious: to preserve the pristine condition of your investment. We specialize in comprehensive care—from deep cleaning and teak treatments to metal polishing and engine room maintenance—ensuring your yacht always looks its absolute best.",
+        "title": "Welcome to Prestige Yacht Detailing",
+        "p1": "At Prestige Yacht Detailing, we are setting a new standard for yacht care in Miami. We are a passionate team in the maritime industry, bringing fresh energy, unwavering dedication, and an obsessive attention to detail to every service.",
+        "p2": "Our mission is simple yet ambitious: to preserve the pristine condition of your vessel. We specialize in comprehensive care—from deep cleaning and teak treatments to metal polishing and engine room maintenance—ensuring your yacht always looks its absolute best.",
         "quote": "Your satisfaction isn't just our goal—it's our promise."
+    },
+    "Services": {
+        "headerTitle": "Enhance Your Experience",
+        "requestAppointment": "Request Appointment"
+    },
+    "Contact": {
+        "headerTitle": "Get In Touch",
+        "defaultMessage": "I would like more information about the service: {service}"
     }
 }
