@@ -2,7 +2,7 @@ import { setRequestLocale } from 'next-intl/server';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
-import Stats from '@/components/Stats';
+import FeaturedServices from '@/components/FeaturedServices';
 
 export default async function Home({
   params
@@ -19,7 +19,7 @@ export default async function Home({
     <main className="flex min-h-screen flex-col bg-navy">
       <Navigation locale={locale} />
       <Hero />
-      <Stats />
+      <FeaturedServices />
 
       {/* Placeholder for other sections */}
       <div id="fleet" className="min-h-[50vh] bg-navy flex flex-col items-center justify-center relative overflow-hidden border-t border-white/5 py-24">

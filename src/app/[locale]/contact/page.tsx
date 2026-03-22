@@ -2,17 +2,18 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import PageHeader from '@/components/PageHeader';
 import ContactForm from '@/components/ContactForm';
-import { setRequestLocale } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Phone, Mail, MapPin } from 'lucide-react';
 
 export default async function Contact({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
     setRequestLocale(locale);
+    const t = await getTranslations('Contact');
 
     return (
         <main className="flex min-h-screen flex-col bg-white">
             <Navigation locale={locale} />
-            <PageHeader title="Get In Touch" imageSrc="/assets/images/hero.png" />
+            <PageHeader title={t('headerTitle')} imageSrc="/assets/images/hero.png" />
 
             <section className="container mx-auto px-4 py-20">
                 <div className="flex flex-col lg:flex-row gap-16">
@@ -57,11 +58,18 @@ export default async function Contact({ params }: { params: Promise<{ locale: st
                             </div>
                         </div>
 
-                        {/* Map Placeholder - In valid impl, Google Maps API goes here */}
-                        <div className="mt-8 h-64 bg-gray-200 rounded-xl overflow-hidden relative shadow-inner">
-                            <div className="absolute inset-0 flex items-center justify-center text-gray-500 font-bold tracking-wider">
-                                GOOGLE MAPS API
-                            </div>
+                        {/* Google Maps Embed */}
+                        <div className="mt-8 h-64 md:h-80 bg-gray-100 rounded-xl overflow-hidden shadow-sm relative">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13964.533865406289!2d-80.12201463329555!3d26.13426408042312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9002ea87dbcc9%3A0x1e271fa5a8b50f54!2sFort%20Lauderdale%20Beach!5e0!3m2!1ses-419!2sar!4v1774149216035!5m2!1ses-419!2sar" 
+                                width="100%" 
+                                height="100%" 
+                                style={{ border: 0 }} 
+                                allowFullScreen 
+                                loading="lazy" 
+                                referrerPolicy="no-referrer-when-downgrade"
+                                className="w-full h-full border-0"
+                            />
                         </div>
                     </div>
                 </div>

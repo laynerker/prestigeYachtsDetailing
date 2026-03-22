@@ -1,8 +1,13 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useTranslations } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 
-export default function ContactForm() {
+function ContactFormContent() {
+    const searchParams = useSearchParams();
+    const service = searchParams.get('service');
+    const t = useTranslations('Contact');
+
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -10,6 +15,16 @@ export default function ContactForm() {
         phone: '',
         message: ''
     });
+
+    useEffect(() => {
+        if (service) {
+            setFormData(prev => ({
+                ...prev,
+                message: t('defaultMessage', { service })
+            }));
+        }
+    }, [service, t]);
+
     const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -102,5 +117,13 @@ export default function ContactForm() {
 
             {status === 'success' && <p className="text-green-600 text-center font-medium">Message sent successfully!</p>}
         </form>
+    );
+}
+
+export default function ContactForm() {
+    return (
+        <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading...</div>}>
+            <ContactFormContent />
+        </Suspense>
     );
 }
