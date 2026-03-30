@@ -10,6 +10,7 @@ export default async function Services({ params }: { params: Promise<{ locale: s
     const { locale } = await params;
     setRequestLocale(locale);
     const t = await getTranslations('Services');
+    const tContact = await getTranslations('Contact');
     const itemsServices = [
         {
             title: "Wash Down",
@@ -104,9 +105,14 @@ export default async function Services({ params }: { params: Promise<{ locale: s
                                             </li>
                                         ))}
                                     </ul>
-                                    <Link href={`/${locale}/contact?service=${encodeURIComponent(item.title)}`} className="inline-block px-8 py-3 bg-navy text-white font-serif tracking-wide rounded hover:bg-gold transition-colors drop-shadow-md">
+                                    <a 
+                                        href={`https://wa.me/19548534995?text=${encodeURIComponent(tContact('defaultMessage', { service: item.title }))}`} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer" 
+                                        className="inline-block px-8 py-3 bg-navy text-white font-serif tracking-wide rounded hover:bg-gold transition-colors drop-shadow-md"
+                                    >
                                         {t('requestAppointment')}
-                                    </Link>
+                                    </a>
                                 </div>
                             </>
                         ) : (
@@ -126,9 +132,14 @@ export default async function Services({ params }: { params: Promise<{ locale: s
                                             </li>
                                         ))}
                                     </ul>
-                                    <Link href={`/${locale}/contact?service=${encodeURIComponent(item.title)}`} className="inline-block px-8 py-3 bg-navy text-white font-serif tracking-wide rounded hover:bg-gold transition-colors drop-shadow-md">
+                                    <a 
+                                        href={`https://wa.me/19548534995?text=${encodeURIComponent(tContact('defaultMessage', { service: item.title }))}`} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer" 
+                                        className="inline-block px-8 py-3 bg-navy text-white font-serif tracking-wide rounded hover:bg-gold transition-colors drop-shadow-md"
+                                    >
                                         {t('requestAppointment')}
-                                    </Link>
+                                    </a>
                                 </div>
                                 <div className="w-full md:w-1/2 h-[400px] bg-gray-200 rounded-lg relative overflow-hidden shadow-xl">
                                     <ImageComparison
