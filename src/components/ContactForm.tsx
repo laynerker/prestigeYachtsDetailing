@@ -30,11 +30,36 @@ function ContactFormContent() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setStatus('sending');
-        // Simulate API call
-        setTimeout(() => {
-            setStatus('success');
-            setFormData({ firstName: '', lastName: '', email: '', phone: '', message: '' });
-        }, 2000);
+
+        try {
+            const response = await fetch('/api/contact.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    nombre: formData.firstName,
+                    apellido: formData.lastName,
+                    correo: formData.email,
+                    telefono: formData.phone,
+                    mensaje: formData.message
+                }),
+            });
+
+            if (response.ok) {
+                setStatus('success');
+                setFormData({ firstName: '', lastName: '', email: '', phone: '', message: '' });
+                // Reset status after 5 seconds
+                setTimeout(() => setStatus('idle'), 5000);
+            } else {
+                setStatus('error');
+                setTimeout(() => setStatus('idle'), 5000);
+            }
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            setStatus('error');
+            setTimeout(() => setStatus('idle'), 5000);
+        }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -45,31 +70,31 @@ function ContactFormContent() {
         <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-lg shadow-lg border border-gray-100">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">{t('firstName')}</label>
                     <input
                         required
                         name="firstName"
                         value={formData.firstName}
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded border border-gray-300 focus:border-navy focus:ring-1 focus:ring-navy outline-none transition-all"
-                        placeholder="John"
+                        placeholder={t('placeholderFirstName')}
                     />
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">{t('lastName')}</label>
                     <input
                         required
                         name="lastName"
                         value={formData.lastName}
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded border border-gray-300 focus:border-navy focus:ring-1 focus:ring-navy outline-none transition-all"
-                        placeholder="Doe"
+                        placeholder={t('placeholderLastName')}
                     />
                 </div>
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('email')}</label>
                 <input
                     required
                     type="email"
@@ -77,12 +102,12 @@ function ContactFormContent() {
                     value={formData.email}
                     onChange={handleChange}
                     className="w-full px-4 py-3 rounded border border-gray-300 focus:border-navy focus:ring-1 focus:ring-navy outline-none transition-all"
-                    placeholder="john@example.com"
+                    placeholder={t('placeholderEmail')}
                 />
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('phone')}</label>
                 <input
                     required
                     type="tel"
@@ -90,12 +115,12 @@ function ContactFormContent() {
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full px-4 py-3 rounded border border-gray-300 focus:border-navy focus:ring-1 focus:ring-navy outline-none transition-all"
-                    placeholder="+1 (305) 555-0123"
+                    placeholder={t('placeholderPhone')}
                 />
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('message')}</label>
                 <textarea
                     required
                     rows={5}
@@ -103,7 +128,7 @@ function ContactFormContent() {
                     value={formData.message}
                     onChange={handleChange}
                     className="w-full px-4 py-3 rounded border border-gray-300 focus:border-navy focus:ring-1 focus:ring-navy outline-none transition-all"
-                    placeholder="Tell us about your event..."
+                    placeholder={t('placeholderMessage')}
                 />
             </div>
 
@@ -112,10 +137,11 @@ function ContactFormContent() {
                 type="submit"
                 className="w-full py-4 bg-navy text-white font-bold rounded hover:bg-navy-light transition-colors disabled:opacity-70 uppercase tracking-widest text-sm"
             >
-                {status === 'sending' ? 'Sending...' : 'Send Message'}
+                {status === 'sending' ? t('sending') : t('send')}
             </button>
 
-            {status === 'success' && <p className="text-green-600 text-center font-medium">Message sent successfully!</p>}
+            {status === 'success' && <p className="text-green-600 text-center font-medium">{t('success')}</p>}
+            {status === 'error' && <p className="text-red-600 text-center font-medium">{t('error')}</p>}
         </form>
     );
 }
