@@ -1,11 +1,13 @@
 'use client';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import Link from 'next/link';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
 export default function Hero() {
     const t = useTranslations('Home');
+    const locale = useLocale();
     const ref = useRef(null);
     const { scrollYProgress } = useScroll({
         target: ref,
@@ -68,15 +70,15 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.8 }}
                 >
-                    <a
-                        href="#fleet"
+                    <Link
+                        href={`/${locale}/services`}
                         className="group relative inline-flex items-center justify-center px-10 py-5 overflow-hidden font-medium text-white border border-white/20 rounded-full transition-all duration-500 hover:border-gold/50 bg-white/5 backdrop-blur-sm"
                     >
                         <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-gold rounded-full group-hover:w-full group-hover:h-56 opacity-10"></span>
                         <span className="relative text-sm tracking-[0.2em] uppercase transition-colors duration-300 group-hover:text-gold-light">
                             {t('cta')}
                         </span>
-                    </a>
+                    </Link>
                 </motion.div>
             </div>
 
