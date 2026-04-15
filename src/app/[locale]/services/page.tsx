@@ -5,11 +5,13 @@ import PageHeader from '@/components/PageHeader';
 import ImageComparison from '@/components/ImageComparison';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
+import ServiceButton from '@/components/ServiceButton';
 
 export default async function Services({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
     setRequestLocale(locale);
     const t = await getTranslations('Services');
+    const tContact = await getTranslations('Contact');
     const itemsServices = [
         {
             title: "Wash Down",
@@ -104,9 +106,12 @@ export default async function Services({ params }: { params: Promise<{ locale: s
                                             </li>
                                         ))}
                                     </ul>
-                                    <Link href={`/${locale}/contact?service=${encodeURIComponent(item.title)}`} className="inline-block px-8 py-3 bg-navy text-white font-serif tracking-wide rounded hover:bg-gold transition-colors drop-shadow-md">
-                                        {t('requestAppointment')}
-                                    </Link>
+                                    <ServiceButton 
+                                        serviceTitle={item.title}
+                                        whatsappText={encodeURIComponent(tContact('defaultMessage', { service: item.title }))}
+                                        buttonText={t('requestAppointment')}
+                                        locale={locale}
+                                    />
                                 </div>
                             </>
                         ) : (
@@ -126,9 +131,12 @@ export default async function Services({ params }: { params: Promise<{ locale: s
                                             </li>
                                         ))}
                                     </ul>
-                                    <Link href={`/${locale}/contact?service=${encodeURIComponent(item.title)}`} className="inline-block px-8 py-3 bg-navy text-white font-serif tracking-wide rounded hover:bg-gold transition-colors drop-shadow-md">
-                                        {t('requestAppointment')}
-                                    </Link>
+                                    <ServiceButton 
+                                        serviceTitle={item.title}
+                                        whatsappText={encodeURIComponent(tContact('defaultMessage', { service: item.title }))}
+                                        buttonText={t('requestAppointment')}
+                                        locale={locale}
+                                    />
                                 </div>
                                 <div className="w-full md:w-1/2 h-[400px] bg-gray-200 rounded-lg relative overflow-hidden shadow-xl">
                                     <ImageComparison

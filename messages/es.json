@@ -9,6 +9,9 @@
         "title": "Lujo Náutico Redefinido",
         "subtitle": "Mantenimiento de yates premium en Miami",
         "cta": "Explora Nuestra Experiencia",
+        "inviteTitle": "Descubre Nuestros Servicios",
+        "inviteText": "Experimente el cuidado definitivo para su yate. Nuestro equipo se dedica a proporcionar servicios premium de lavado, detallado y protección, asegurando que su embarcación mantenga una apariencia impecable.",
+        "inviteCta": "Ver Todos los Servicios",
         "stats": {
             "yachts": "Yates impecables",
             "clients": "Clientes santisfechos",
@@ -33,6 +36,20 @@
     },
     "Contact": {
         "headerTitle": "Ponte en Contacto",
-        "defaultMessage": "Me gustaría recibir más información sobre el servicio: {service}"
+        "defaultMessage": "Me gustaría recibir más información sobre el servicio: {service}",
+        "firstName": "Nombre",
+        "lastName": "Apellido",
+        "email": "Email",
+        "phone": "Teléfono",
+        "message": "Mensaje",
+        "placeholderFirstName": "Juan",
+        "placeholderLastName": "Pérez",
+        "placeholderEmail": "juan@ejemplo.com",
+        "placeholderPhone": "+1 (305) 555-0123",
+        "placeholderMessage": "Cuéntanos sobre tu evento...",
+        "send": "Enviar Mensaje",
+        "sending": "Enviando...",
+        "success": "¡Mensaje enviado con éxito!",
+        "error": "Ocurrió un error al enviar tu mensaje. Por favor, inténtalo de nuevo más tarde."
     }
 }
