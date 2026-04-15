@@ -32,7 +32,54 @@
     },
     "Services": {
         "headerTitle": "Enhance Your Experience",
-        "requestAppointment": "Request Appointment"
+        "requestAppointment": "Request Appointment",
+        "pricingNote": "Pricing subject to yacht size and condition. Weekly / Bi-weekly packages.",
+        "items": {
+            "washDown": {
+                "description": "Complete wash using professional marine-grade products, safe for all surfaces.",
+                "items": [
+                    "Hull",
+                    "Deck",
+                    "Removal of salt and marine residue",
+                    "Stainless steel"
+                ]
+            },
+            "premiumDetailedWash": {
+                "description": "An in-depth premium service focused on flawless finishes and impeccable presentation.",
+                "items": [
+                    "Complete exterior Wash",
+                    "Hand drying",
+                    "Compartment cleaning",
+                    "Cushions",
+                    "Strainer cleaning",
+                    "Water tank refill"
+                ]
+            },
+            "teakCleaning": {
+                "description": "Professional care for teak decks using specialized marine-grade products.",
+                "items": [
+                    "Deep cleaning",
+                    "Removal of dirt, salt and marine residue",
+                    "Natural color restoration (without damaging the wood)"
+                ]
+            },
+            "metalPolish": {
+                "description": "Professional restoration and protection of stainless steel surfaces.",
+                "items": [
+                    "Removal of stains and light oxidation",
+                    "Hand polishing",
+                    "Protection against marine corrosion"
+                ]
+            },
+            "engineRoomCare": {
+                "description": "Careful cleaning and presentation of machinery spaces, respecting all mechanical and safety standars",
+                "items": [
+                    "Surface cleaning",
+                    "Oil residue control",
+                    "Respect for all mechanical components"
+                ]
+            }
+        }
     },
     "Contact": {
         "headerTitle": "Get In Touch",

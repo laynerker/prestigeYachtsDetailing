@@ -32,7 +32,54 @@
     },
     "Services": {
         "headerTitle": "Mejora tu Experiencia",
-        "requestAppointment": "Solicitar Cita"
+        "requestAppointment": "Solicitar Cita",
+        "pricingNote": "Precios sujetos al tamaño y condición del yate. Paquetes semanales / quincenales.",
+        "items": {
+            "washDown": {
+                "description": "Lavado completo utilizando productos de grado marino profesionales, seguros para todas las superficies.",
+                "items": [
+                    "Casco",
+                    "Cubierta",
+                    "Eliminación de sal y residuos marinos",
+                    "Acero inoxidable"
+                ]
+            },
+            "premiumDetailedWash": {
+                "description": "Un servicio premium detallado enfocado en acabados perfectos y una presentación impecable.",
+                "items": [
+                    "Lavado exterior completo",
+                    "Secado a mano",
+                    "Limpieza de compartimentos",
+                    "Cojines",
+                    "Limpieza de coladores",
+                    "Llenado de tanque de agua"
+                ]
+            },
+            "teakCleaning": {
+                "description": "Cuidado profesional para cubiertas de teca utilizando productos de grado marino especializados.",
+                "items": [
+                    "Limpieza profunda",
+                    "Eliminación de suciedad, sal y residuos marinos",
+                    "Restauración del color natural (sin dañar la madera)"
+                ]
+            },
+            "metalPolish": {
+                "description": "Restauración y protección profesional de superficies de acero inoxidable.",
+                "items": [
+                    "Eliminación de manchas y oxidación ligera",
+                    "Pulido a mano",
+                    "Protección contra la corrosión marina"
+                ]
+            },
+            "engineRoomCare": {
+                "description": "Cuidado, limpieza y presentación de espacios de maquinaria, respetando todos los estándares mecánicos y de seguridad.",
+                "items": [
+                    "Limpieza de superficies",
+                    "Control de residuos de aceite",
+                    "Respeto por todos los componentes mecánicos"
+                ]
+            }
+        }
     },
     "Contact": {
         "headerTitle": "Ponte en Contacto",
